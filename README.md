@@ -27,6 +27,46 @@ The goal of this project is to build a simulation pipeline for a soft robotic ar
 ├── compute.py            # simulation, control, and contact-force visualization
 └── README.md
 ```
+## Usage
+
+### Generate a full model
+
+```bash
+python merge.py --start 1 --end 20 --max-force 10
+```
+
+### Arguments
+
+- `--start`: top module index
+- `--end`: bottom module index
+- `--max-force`: actuator control upper bound
+
+This will generate a final assembled XML model such as:
+
+```text
+final1_20.xml
+```
+
+### Simulation
+
+Run the MuJoCo simulation and visualize contact forces:
+
+```bash
+python compute.py
+```
+
+The simulation script supports:
+
+- rope actuator control
+- tracked contact force extraction
+- per-body contact force logging
+- contact force arrow rendering in the MuJoCo viewer
+
+## Dependencies
+
+- Python 3.x
+- MuJoCo
+- NumPy
 
 ## Simulation Result
 
