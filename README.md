@@ -43,5 +43,5 @@ The goal of this project is to build a simulation pipeline for a soft robotic ar
 </p>
 
 <p align="center">
-  <img src="images/grasp_result.pngg" alt="Grasping result" width="70%">
+  <img src="images/grasp_result.png" alt="Grasping result" width="70%">
 </p>
