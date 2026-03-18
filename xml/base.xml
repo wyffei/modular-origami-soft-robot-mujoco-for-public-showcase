@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco model="origami">
+  <compiler angle="radian" coordinate="local" inertiafromgeom="false" balanceinertia="true" />
+  <option timestep="0.002" gravity="0 0 -9.8" solver="Newton"/>
+  <size njmax="4000" nconmax="1000" />
+  <default>
+  </default>
+  <asset>
+  </asset>
+  <worldbody>
+    <site name="drag1" pos="-0.0040495 0.0151086 0" />
+    <site name="drag2" pos="-0.0110653 -0.0110603 0" />
+    <site name="drag3" pos="0.0151147 -0.0040482 0" />
+  </worldbody>
+  <equality>
+  </equality>
+  <tendon>
+    <spatial name="rope1" width="0.0005" limited="true" range="0 1.5" >
+      <site site="drag1" />
+      <site site="attach_small" />
+      </spatial>
+    <spatial name="rope2" width="0.0005" limited="true" range="0 1.5"> 
+      <site site="drag2" />
+      <site site="attach_small" />
+      </spatial>
+    <spatial name="rope3" width="0.0005" limited="true" range="0 1.5">
+      <site site="drag3" />
+      <site site="attach_small" />
+      </spatial>
+    </tendon>
+  <actuator>
+    <motor name="pull_rope1" tendon="rope1" gear="-1" ctrlrange="0 12" />
+    <motor name="pull_rope2" tendon="rope2" gear="-1" ctrlrange="0 12" />
+    <motor name="pull_rope3" tendon="rope3" gear="-1" ctrlrange="0 12" />
+  </actuator>
+</mujoco>

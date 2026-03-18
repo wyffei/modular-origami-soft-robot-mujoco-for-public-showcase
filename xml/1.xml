@@ -1,0 +1,365 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco model="m1_module">
+  <compiler angle="radian" coordinate="local" inertiafromgeom="false" balanceinertia="true" />
+  <option timestep="0.001" gravity="0 0 -9.8" solver="Newton" />
+  <size njmax="4000" nconmax="1000" />  
+  <default>
+    <site type="sphere" size="0.0002" rgba="1 0 1 0" />
+    <default class="vis_mesh">
+      <geom type="mesh" contype="0" conaffinity="0" />
+      </default>
+    <default class="collision_capsule">
+      <geom contype="1" conaffinity="1" solref="0.002 1" solimp="0.97 0.995 0.0005" friction="0.8 0.1 0.1" rgba="1 0 0 0" type="capsule" size="0.0002" margin="0.0001" />
+      </default>
+    <default class="collision_disk">
+      <geom contype="1" conaffinity="1" solref="0.002 1" solimp="0.97 0.995 0.0005" friction="0.8 0.1 0.1" rgba="1 0 0 0" type="cylinder" />
+      </default>
+    <default class="m1">
+      <joint springref="0" damping="4e-4" stiffness="0.015"  armature="2e-7" frictionloss="1e-3"/>
+      <geom type="mesh" contype="0" conaffinity="0" />
+      </default>
+  </default>
+  <asset>
+    <mesh name="m1_seg2_m" file="../STL/rib_seg2.stl" scale="3.1039944 3.1039944 3.1039944" />
+    <mesh name="m1_seg5L_m" file="../STL/rib_seg5L.stl" scale="3.1039944 3.1039944 3.1039944" />
+    <mesh name="m1_seg5R_m" file="../STL/rib_seg5R.stl" scale="3.1039944 3.1039944 3.1039944" />
+    <mesh name="m1_seg6_m" file="../STL/rib_seg6.stl" scale="3.1039944 3.1039944 3.1039944" />
+    <mesh name="m1_seg4_m" file="../STL/rib_seg4.stl" scale="3.1039944 3.1039944 3.1039944" />
+    <mesh name="m1_seg3L_m" file="../STL/rib_seg3L.stl" scale="3.1039944 3.1039944 3.1039944" />
+    <mesh name="m1_seg3R_m" file="../STL/rib_seg3R.stl" scale="3.1039944 3.1039944 3.1039944" />
+    <mesh name="m1_bottom" file="../STL/bottom_4x.stl" scale="3.1039944 3.1039944 3.1039944" />
+    <mesh name="bottom1_col" file="../STL/bottom_collision.stl" scale="3.103994388566468 3.103994388566468 3.103994388566468" />
+    <mesh name="m1_top" file="../STL/top_4x.stl" scale="3.103994388566468 3.103994388566468 3.103994388566468" />
+  </asset>
+  <worldbody>
+  <body name="m1_bottom" pos="0 0 0" quat="1 0 0 0" childclass="m1">
+    <geom mesh="m1_bottom"/>
+    <geom name="disk1_bottom" class="collision_disk" pos="0 0 0.0021727961" size="0.046559916 0.0021727961" />
+    <site name="rope1_1_bottom" pos="-0.0432525 -0.0115920 0"/>
+    <site name="rope2_1_bottom" pos="0.0316620 -0.0316761 0"/>
+    <site name="rope3_1_bottom" pos="0.0115879 0.0432623 0"/>
+    <inertial mass="0.014848159" pos="0 0 0.0015855203" fullinertia="3.7139942e-08 3.7139942e-08 2.5438316e-11 0 0 0" />
+    <body name="m1_seg2" pos="2.82567101e-05 -3.24512615e-02 1.86685601e-02" quat="9.99991490e-01 -4.12540915e-03 -1.52357895e-05 6.30362730e-06">
+      <inertial mass="0.0015336127" pos="-1.9089565e-05 0.0014327107 -0.0046802027" fullinertia="7.0972903e-08 2.492955e-07 1.8493656e-07 0 0 -1.3991074e-08" />
+      <joint name="m1_j_bottom_seg2" type="hinge" pos="-2.86542e-05 0.00296094 -0.0143462" axis="1 0 0" limited="true" range="-0.2 1.2" />
+      <geom mesh="m1_seg2_m"/>
+      <geom class="collision_capsule" fromto="0 0.0012415978 -0.0093119832 0 -0.0024831955 0.0093119832" />
+      <geom class="collision_capsule" fromto="0.018623966 0.0012415978 -0.0093119832 0 -0.0024831955 0.0093119832" />
+      <geom class="collision_capsule" fromto="-0.018623966 0.0012415978 -0.0093119832 0 -0.0024831955 0.0093119832" />
+      <body name="m1_seg3L"  pos="-1.31683590e-02 5.04228292e-04 6.55915134e-03"  quat="9.99992509e-01 3.80275225e-03 -6.75333410e-04 2.53543553e-04">
+        <inertial mass="0.00055767735" pos="-0.0043363422 0.0016619407 -0.0026744016" fullinertia="2.1622569e-08 3.7648708e-08 1.9078737e-08 -4.5788969e-09 1.2973541e-08 -1.7806821e-09" />
+        <joint name="m1_j_seg2_seg3L" type="hinge" pos="-0.001022 -0.000563533 -0.00655227" axis="-0.67953742 0.14994959 -0.7181532" limited="true" range="0 2.3" />
+        <geom mesh="m1_seg3L_m" />
+        <geom class="collision_capsule" fromto="-0.008 0.002 0.0005 0.002 -0.001 0.003" />
+        <geom class="collision_capsule" fromto="-0.008 0.002 0.0005 -0.01 0.0015 -0.01" />
+        <geom class="collision_capsule" fromto="0.002 -0.001 0.003 -0.01 0.0015 -0.01"/>
+        <body name="m1_seg4"  pos="-5.94925460e-04 -5.89429943e-04 1.34424211e-02"   quat="9.99998989e-01 -5.45000526e-04 1.28441048e-03 -2.75984413e-04">
+          <inertial mass="0.00062738702" pos="-0.0043554318 0.0014518003 0.0014709209" fullinertia="2.0605036e-08 4.0446923e-08 2.3403251e-08 -4.0701306e-09 -1.1192859e-08 -1.2719158e-09" />
+          <joint name="m1_j_seg3L_seg4" type="hinge" pos="0.00161419 0.00116527 -0.00688657" axis="-0.93308026 0.32845604 -0.14655325" limited="true" range="-2.3 0" />
+          <geom mesh="m1_seg4_m"/>
+          <geom class="collision_capsule" fromto="-0.01 0.0003 0.008 0.006 -0.002 -0.002" />
+          <geom class="collision_capsule" fromto="-0.01 0.0003 0.008 -0.008 0.002 -0.003" />
+          <geom class="collision_capsule" fromto="0.006 -0.002 -0.002 -0.008 0.002 -0.003"/>
+          <body name="m1_seg5L"  pos="1.37447347e-02 -1.15027080e-03 6.95052670e-03" quat="-2.03688796e-04 -1.49606636e-03 -9.35921620e-04 9.99998422e-01">
+            <inertial mass="0.00079689305" pos="0.0096278146 -0.0010697606 0.0037441622" fullinertia="2.3263971e-08 6.0098582e-08 3.8773285e-08 -2.2617749e-09 1.4539982e-08 -3.5542187e-09" />
+            <joint name="m1_j_seg4_seg5L" type="hinge" pos="0.0153778 9.55141e-06 -2.86542e-05" axis="0.78792329 -0.098891322 0.60778072" limited="true" range="0 2.3" />
+            <geom mesh="m1_seg5L_m"/>
+            <geom class="collision_capsule" fromto="0.0031039944 -0.00062079888 0.0062079888 0.0031039944 0.0017415978 -0.0062079888" />
+            <geom class="collision_capsule" fromto="0.018623966 -0.00062079888 0.0062079888 0.0031039944 -0.00062079888 0.0062079888" />
+            <geom class="collision_capsule" fromto="0.018623966 -0.00062079888 0.0062079888 0.0031039944 0.0017415978 -0.0062079888" />
+            <site name="m1_h5Ltop_b1" pos="0.0095896044 -0.0017956608 0.011404386" />
+            <site name="m1_h5Ltop_b2" pos="0.018901588 -0.0017956608 0.011404386" />
+            </body>
+          </body>
+        </body>
+      <body name="m1_seg3R"   pos="1.31400352e-02 5.24306929e-04 6.56619006e-03" quat="2.70030059e-04 6.97410913e-04 -3.80717348e-03 9.99992473e-01">
+        <inertial mass="0.00065893204" pos="-0.0043172527 -0.0016619407 -0.0026744016" fullinertia="2.5548464e-08 4.4183837e-08 2.2542767e-08 5.4102644e-09 1.5329084e-08 2.1039917e-09" />
+        <joint name="m1_j_seg2_seg3R" type="hinge" pos="-0.00105066 0.000563533 -0.00656182" axis="-0.67798864 -0.1493788 -0.71973424" limited="true" range="-2.3 0" />
+        <geom mesh="m1_seg3R_m" />
+        <geom class="collision_capsule" fromto="-0.008 -0.002 0.0006 0.002 0.001 0.003" />
+        <geom class="collision_capsule" fromto="-0.008 -0.002 0.0006 -0.01 -0.0015 -0.01" />
+        <geom class="collision_capsule" fromto="0.002 0.001 0.003 -0.01 -0.0015 -0.01"/>
+        <body name="m1_seg6"  pos="-5.68514536e-04 5.95035466e-04 1.34636207e-02" quat="3.18125138e-04 -1.28611439e-03 5.84129138e-04 -9.99998952e-01">
+          <inertial mass="0.00062738702" pos="0.004393642 0.0014518003 0.0014900104" fullinertia="2.0605036e-08 4.0446923e-08 2.3403251e-08 4.0701306e-09 1.1192859e-08 -1.2719158e-09" />
+          <joint name="m1_j_seg3R_seg6" type="hinge" pos="-0.00161419 0.00116527 -0.00687702" axis="0.93297932 0.3284205 -0.14727377" limited="true" range="0 2.3" />
+          <geom mesh="m1_seg6_m" />
+          <geom class="collision_capsule" fromto="0.01 0.0005 0.008 -0.006 -0.002 -0.002" />
+          <geom class="collision_capsule" fromto="0.01 0.0005 0.008 0.008 0.0025 -0.003" />
+          <geom class="collision_capsule" fromto="-0.006 -0.002 -0.002 0.008 0.0025 -0.003"/>
+          <body name="m1_seg5R"  pos="-1.37544515e-02 -1.16536643e-03 6.90631225e-03" quat="2.80900148e-04 1.53293116e-03 -9.96463485e-04 9.99998289e-01">
+            <inertial mass="0.00079637023" pos="-0.0095514253 -0.0010697606 0.0037441622" fullinertia="2.324883e-08 6.0059483e-08 3.8425162e-08 2.260303e-09 -1.4207618e-08 -3.5519038e-09" />
+            <joint name="m1_j_seg5R_seg6" type="hinge" pos="-0.01538 -0.00000955 0.00002866" axis="-0.786101 -0.099797 0.609989" limited="true" range="-2.3 0"/>
+            <geom mesh="m1_seg5R_m"/>
+            <geom class="collision_capsule" fromto="-0.0031039944 -0.00062079888 0.0062079888 -0.0031039944 0.0017415978 -0.0062079888"/>
+            <geom class="collision_capsule" fromto="-0.018623966 -0.00062079888 0.0062079888 -0.0031039944 -0.00062079888 0.0062079888"/>
+            <geom class="collision_capsule" fromto="-0.018623966 -0.00062079888 0.0062079888 -0.0031039944 0.0017415978 -0.0062079888"/>
+            <site name="m1_h5Rtop_b1" pos="-0.0095132151 -0.0017956608 0.011404386" />
+            <site name="m1_h5Rtop_b2" pos="-0.018825198 -0.0017956608 0.011404386" />
+            </body>
+          </body>
+        </body>
+      </body>
+    <body name="m1_seg2_r1" pos="0.032451262 2.825671e-05 0.01866856" quat="0.70709631 -0.0029063315 -0.0029278781 0.70710522">
+        <inertial mass="0.0015336127" pos="-1.9089565e-05 0.0014327107 -0.0046802027" fullinertia="7.0972903e-08 2.492955e-07 1.8493656e-07 0 0 -1.3991074e-08" />
+        <joint name="m1_j_bottom_seg2_r1" type="hinge" pos="-2.86542e-05 0.00296094 -0.0143462" axis="1 0 0" limited="true" range="-0.2 1.2" />
+        <geom mesh="m1_seg2_m"/>
+        <geom class="collision_capsule" fromto="0 0.0012415978 -0.0093119832 0 -0.0024831955 0.0093119832" />
+        <geom class="collision_capsule" fromto="0.018623966 0.0012415978 -0.0093119832 0 -0.0024831955 0.0093119832" />
+        <geom class="collision_capsule" fromto="-0.018623966 0.0012415978 -0.0093119832 0 -0.0024831955 0.0093119832" />
+        <body name="m1_seg3L_r1" pos="-0.013168359 0.00050422829 0.0065591513" quat="0.99999251 0.0038027522 -0.00067533341 0.00025354355">
+          <inertial mass="0.00055767735" pos="-0.0043363422 0.0016619407 -0.0026744016" fullinertia="2.1622569e-08 3.7648708e-08 1.9078737e-08 -4.5788969e-09 1.2973541e-08 -1.7806821e-09" />
+          <joint name="m1_j_seg2_seg3L_r1" type="hinge" pos="-0.001022 -0.000563533 -0.00655227" axis="-0.67953742 0.14994959 -0.7181532" limited="true" range="0 2.3" />
+          <geom mesh="m1_seg3L_m" />
+          <geom class="collision_capsule" fromto="-0.008 0.002 0.0005 0.002 -0.001 0.003" />
+          <geom class="collision_capsule" fromto="-0.008 0.002 0.0005 -0.01 0.0015 -0.01" />
+          <geom class="collision_capsule" fromto="0.002 -0.001 0.003 -0.01 0.0015 -0.01"/>
+          <body name="m1_seg4_r1" pos="-0.00059492546 -0.00058942994 0.013442421" quat="0.99999899 -0.00054500053 0.0012844105 -0.00027598441">
+            <inertial mass="0.00062738702" pos="-0.0043554318 0.0014518003 0.0014709209" fullinertia="2.0605036e-08 4.0446923e-08 2.3403251e-08 -4.0701306e-09 -1.1192859e-08 -1.2719158e-09" />
+            <joint name="m1_j_seg3L_seg4_r1" type="hinge" pos="0.00161419 0.00116527 -0.00688657" axis="-0.93308026 0.32845604 -0.14655325" limited="true" range="-2.3 0" />
+            <geom mesh="m1_seg4_m" />
+            <geom class="collision_capsule" fromto="-0.01 0.0003 0.008 0.006 -0.002 -0.002" />
+            <geom class="collision_capsule" fromto="-0.01 0.0003 0.008 -0.008 0.002 -0.003" />
+            <geom class="collision_capsule" fromto="0.006 -0.002 -0.002 -0.008 0.002 -0.003"/>
+            <body name="m1_seg5L_r1" pos="0.013744735 -0.0011502708 0.0069505267" quat="-0.0002036888 -0.0014960664 -0.00093592162 0.99999842">
+              <inertial mass="0.00079689305" pos="0.0096278146 -0.0010697606 0.0037441622" fullinertia="2.3263971e-08 6.0098582e-08 3.8773285e-08 -2.2617749e-09 1.4539982e-08 -3.5542187e-09" /> 
+              <joint name="m1_j_seg4_seg5L_r1" type="hinge" pos="0.0153778 9.55141e-06 -2.86542e-05" axis="0.78792329 -0.098891322 0.60778072" limited="true" range="0 2.3" />
+              <geom mesh="m1_seg5L_m"/>
+              <geom class="collision_capsule" fromto="0.0031039944 -0.00062079888 0.0062079888 0.0031039944 0.0017415978 -0.0062079888" />
+              <geom class="collision_capsule" fromto="0.018623966 -0.00062079888 0.0062079888 0.0031039944 -0.00062079888 0.0062079888" />
+              <geom class="collision_capsule" fromto="0.018623966 -0.00062079888 0.0062079888 0.0031039944 0.0017415978 -0.0062079888" />
+              <site name="m1_h5Ltop_b1_r1" pos="0.0095896044 -0.0017956608 0.011404386" />
+              <site name="m1_h5Ltop_b2_r1" pos="0.018901588 -0.0017956608 0.011404386" />
+            </body>
+          </body>
+        </body>
+        <body name="m1_seg3R_r1" pos="0.013140035 0.00052430693 0.0065661901" quat="0.00027003006 0.00069741091 -0.0038071735 0.99999247">
+          <inertial mass="0.00065893204" pos="-0.0043172527 -0.0016619407 -0.0026744016" fullinertia="2.5548464e-08 4.4183837e-08 2.2542767e-08 5.4102644e-09 1.5329084e-08 2.1039917e-09" />
+          <joint name="m1_j_seg2_seg3R_r1" type="hinge" pos="-0.00105066 0.000563533 -0.00656182" axis="-0.67798864 -0.1493788 -0.71973424" limited="true" range="-2.3 0" />
+          <geom mesh="m1_seg3R_m" />
+          <geom class="collision_capsule" fromto="-0.008 -0.002 0.0006 0.002 0.001 0.003" />
+          <geom class="collision_capsule" fromto="-0.008 -0.002 0.0006 -0.01 -0.0015 -0.01" />
+          <geom class="collision_capsule" fromto="0.002 0.001 0.003 -0.01 -0.0015 -0.01"/>
+          <body name="m1_seg6_r1" pos="-0.00056851454 0.00059503547 0.013463621" quat="0.00031812514 -0.0012861144 0.00058412914 -0.99999895">
+            <inertial mass="0.00062738702" pos="0.004393642 0.0014518003 0.0014900104" fullinertia="2.0605036e-08 4.0446923e-08 2.3403251e-08 4.0701306e-09 1.1192859e-08 -1.2719158e-09" />
+            <joint name="m1_j_seg3R_seg6_r1" type="hinge" pos="-0.00161419 0.00116527 -0.00687702" axis="0.93297932 0.3284205 -0.14727377" limited="true" range="0 2.3" />
+            <geom mesh="m1_seg6_m" />
+            <geom class="collision_capsule" fromto="0.01 0.0005 0.008 -0.006 -0.002 -0.002" />
+            <geom class="collision_capsule" fromto="0.01 0.0005 0.008 0.008 0.0025 -0.003" />
+            <geom class="collision_capsule" fromto="-0.006 -0.002 -0.002 0.008 0.0025 -0.003"/>
+            <body name="m1_seg5R_r1" pos="-0.013754452 -0.0011653664 0.0069063123" quat="0.00028090015 0.0015329312 -0.00099646348 0.99999829">
+              <inertial mass="0.00079637023" pos="-0.0095514253 -0.0010697606 0.0037441622" fullinertia="2.324883e-08 6.0059483e-08 3.8425162e-08 2.260303e-09 -1.4207618e-08 -3.5519038e-09" />
+              <joint name="m1_j_seg5R_seg6_r1"   type="hinge" pos="-0.01538 -0.00000955 0.00002866"  axis="-0.786101 -0.099797 0.609989"   limited="true" range="-2.3 0"/>
+              <geom mesh="m1_seg5R_m"/>
+              <geom class="collision_capsule" fromto="-0.0031039944 -0.00062079888 0.0062079888 -0.0031039944 0.0017415978 -0.0062079888"/>
+              <geom class="collision_capsule" fromto="-0.018623966 -0.00062079888 0.0062079888 -0.0031039944 -0.00062079888 0.0062079888"/>
+              <geom class="collision_capsule" fromto="-0.018623966 -0.00062079888 0.0062079888 -0.0031039944 0.0017415978 -0.0062079888"/>
+              <site name="m1_h5Rtop_b1_r1" pos="-0.0095132151 -0.0017956608 0.011404386" />
+              <site name="m1_h5Rtop_b2_r1" pos="-0.018825198 -0.0017956608 0.011404386" />
+            </body>
+          </body>
+        </body>
+      </body>
+    <body name="m1_seg2_r2" pos="-2.825671e-05 0.032451262 0.01866856" quat="-6.3036273e-06 1.523579e-05 -0.0041254092 0.99999149">
+        <inertial mass="0.0015336127" pos="-1.9089565e-05 0.0014327107 -0.0046802027" fullinertia="7.0972903e-08 2.492955e-07 1.8493656e-07 0 0 -1.3991074e-08" />
+        <joint name="m1_j_bottom_seg2_r2" type="hinge" pos="-2.86542e-05 0.00296094 -0.0143462" axis="1 0 0" limited="true" range="-0.2 1.2" />
+        <geom mesh="m1_seg2_m"/>
+        <geom class="collision_capsule" fromto="0 0.0012415978 -0.0093119832 0 -0.0024831955 0.0093119832" />
+        <geom class="collision_capsule" fromto="0.018623966 0.0012415978 -0.0093119832 0 -0.0024831955 0.0093119832" />
+        <geom class="collision_capsule" fromto="-0.018623966 0.0012415978 -0.0093119832 0 -0.0024831955 0.0093119832" />
+        <body name="m1_seg3L_r2" pos="-0.013168359 0.00050422829 0.0065591513" quat="0.99999251 0.0038027522 -0.00067533341 0.00025354355">
+          <inertial mass="0.00055767735" pos="-0.0043363422 0.0016619407 -0.0026744016" fullinertia="2.1622569e-08 3.7648708e-08 1.9078737e-08 -4.5788969e-09 1.2973541e-08 -1.7806821e-09" />
+          <joint name="m1_j_seg2_seg3L_r2" type="hinge" pos="-0.001022 -0.000563533 -0.00655227" axis="-0.67953742 0.14994959 -0.7181532" limited="true" range="0 2.3" />
+          <geom mesh="m1_seg3L_m" />
+          <geom class="collision_capsule" fromto="-0.008 0.002 0.0005 0.002 -0.001 0.003" />
+          <geom class="collision_capsule" fromto="-0.008 0.002 0.0005 -0.01 0.0015 -0.01" />
+          <geom class="collision_capsule" fromto="0.002 -0.001 0.003 -0.01 0.0015 -0.01"/>
+          <body name="m1_seg4_r2" pos="-0.00059492546 -0.00058942994 0.013442421" quat="0.99999899 -0.00054500053 0.0012844105 -0.00027598441">
+            <inertial mass="0.00062738702" pos="-0.0043554318 0.0014518003 0.0014709209" fullinertia="2.0605036e-08 4.0446923e-08 2.3403251e-08 -4.0701306e-09 -1.1192859e-08 -1.2719158e-09" />
+            <joint name="m1_j_seg3L_seg4_r2" type="hinge" pos="0.00161419 0.00116527 -0.00688657" axis="-0.93308026 0.32845604 -0.14655325" limited="true" range="-2.3 0" />
+            <geom mesh="m1_seg4_m" />
+            <geom class="collision_capsule" fromto="-0.01 0.0003 0.008 0.006 -0.002 -0.002" />
+            <geom class="collision_capsule" fromto="-0.01 0.0003 0.008 -0.008 0.002 -0.003" />
+            <geom class="collision_capsule" fromto="0.006 -0.002 -0.002 -0.008 0.002 -0.003"/>
+            <body name="m1_seg5L_r2" pos="0.013744735 -0.0011502708 0.0069505267" quat="-0.0002036888 -0.0014960664 -0.00093592162 0.99999842">
+              <inertial mass="0.00079689305" pos="0.0096278146 -0.0010697606 0.0037441622" fullinertia="2.3263971e-08 6.0098582e-08 3.8773285e-08 -2.2617749e-09 1.4539982e-08 -3.5542187e-09" />
+              <joint name="m1_j_seg4_seg5L_r2" type="hinge" pos="0.0153778 9.55141e-06 -2.86542e-05" axis="0.78792329 -0.098891322 0.60778072" limited="true" range="0 2.3" />
+              <geom mesh="m1_seg5L_m"/>
+              <geom class="collision_capsule" fromto="0.0031039944 -0.00062079888 0.0062079888 0.0031039944 0.0017415978 -0.0062079888" />
+              <geom class="collision_capsule" fromto="0.018623966 -0.00062079888 0.0062079888 0.0031039944 -0.00062079888 0.0062079888" />
+              <geom class="collision_capsule" fromto="0.018623966 -0.00062079888 0.0062079888 0.0031039944 0.0017415978 -0.0062079888" />
+              <site name="m1_h5Ltop_b1_r2" pos="0.0095896044 -0.0017956608 0.011404386" />
+              <site name="m1_h5Ltop_b2_r2" pos="0.018901588 -0.0017956608 0.011404386" />
+            </body>
+          </body>
+        </body>
+        <body name="m1_seg3R_r2" pos="0.013140035 0.00052430693 0.0065661901" quat="0.00027003006 0.00069741091 -0.0038071735 0.99999247">
+          <inertial mass="0.00065893204" pos="-0.0043172527 -0.0016619407 -0.0026744016" fullinertia="2.5548464e-08 4.4183837e-08 2.2542767e-08 5.4102644e-09 1.5329084e-08 2.1039917e-09" />
+          <joint name="m1_j_seg2_seg3R_r2" type="hinge" pos="-0.00105066 0.000563533 -0.00656182" axis="-0.67798864 -0.1493788 -0.71973424" limited="true" range="-2.3 0" />
+          <geom mesh="m1_seg3R_m" />
+          <geom class="collision_capsule" fromto="-0.008 -0.002 0.0006 0.002 0.001 0.003" />
+          <geom class="collision_capsule" fromto="-0.008 -0.002 0.0006 -0.01 -0.0015 -0.01" />
+          <geom class="collision_capsule" fromto="0.002 0.001 0.003 -0.01 -0.0015 -0.01"/>
+          <body name="m1_seg6_r2" pos="-0.00056851454 0.00059503547 0.013463621" quat="0.00031812514 -0.0012861144 0.00058412914 -0.99999895">
+            <inertial mass="0.00062738702" pos="0.004393642 0.0014518003 0.0014900104" fullinertia="2.0605036e-08 4.0446923e-08 2.3403251e-08 4.0701306e-09 1.1192859e-08 -1.2719158e-09" />
+            <joint name="m1_j_seg3R_seg6_r2" type="hinge" pos="-0.00161419 0.00116527 -0.00687702" axis="0.93297932 0.3284205 -0.14727377" limited="true" range="0 2.3" />
+            <geom mesh="m1_seg6_m" />
+            <geom class="collision_capsule" fromto="0.01 0.0005 0.008 -0.006 -0.002 -0.002" />
+            <geom class="collision_capsule" fromto="0.01 0.0005 0.008 0.008 0.0025 -0.003" />
+            <geom class="collision_capsule" fromto="-0.006 -0.002 -0.002 0.008 0.0025 -0.003"/>
+            <body name="m1_seg5R_r2" pos="-0.013754452 -0.0011653664 0.0069063123" quat="0.00028090015 0.0015329312 -0.00099646348 0.99999829">
+              <inertial mass="0.00079637023" pos="-0.0095514253 -0.0010697606 0.0037441622" fullinertia="2.324883e-08 6.0059483e-08 3.8425162e-08 2.260303e-09 -1.4207618e-08 -3.5519038e-09" />
+              <joint name="m1_j_seg5R_seg6_r2" type="hinge" pos="-0.01538 -0.00000955 0.00002866" axis="-0.786101 -0.099797 0.609989" limited="true" range="-2.3 0"/>
+              <geom mesh="m1_seg5R_m"/>
+              <geom class="collision_capsule" fromto="-0.0031039944 -0.00062079888 0.0062079888 -0.0031039944 0.0017415978 -0.0062079888"/>
+              <geom class="collision_capsule" fromto="-0.018623966 -0.00062079888 0.0062079888 -0.0031039944 -0.00062079888 0.0062079888"/>
+              <geom class="collision_capsule" fromto="-0.018623966 -0.00062079888 0.0062079888 -0.0031039944 0.0017415978 -0.0062079888"/>
+              <site name="m1_h5Rtop_b1_r2" pos="-0.0095132151 -0.0017956608 0.011404386" />
+              <site name="m1_h5Rtop_b2_r2" pos="-0.018825198 -0.0017956608 0.011404386" />
+            </body>
+          </body>
+        </body>
+      </body>
+    <body name="m1_seg2_r3" pos="-0.032451262 -2.825671e-05 0.01866856" quat="-0.70710522 0.0029278781 -0.0029063315 0.70709631">
+        <inertial mass="0.0015336127" pos="-1.9089565e-05 0.0014327107 -0.0046802027" fullinertia="7.0972903e-08 2.492955e-07 1.8493656e-07 0 0 -1.3991074e-08" />
+        <joint name="m1_j_bottom_seg2_r3" type="hinge" pos="-2.86542e-05 0.00296094 -0.0143462" axis="1 0 0" limited="true" range="-0.2 1.2" />
+        <geom mesh="m1_seg2_m"  />
+        <geom class="collision_capsule" fromto="0 0.0012415978 -0.0093119832 0 -0.0024831955 0.0093119832" />
+        <geom class="collision_capsule" fromto="0.018623966 0.0012415978 -0.0093119832 0 -0.0024831955 0.0093119832" />
+        <geom class="collision_capsule" fromto="-0.018623966 0.0012415978 -0.0093119832 0 -0.0024831955 0.0093119832" />
+        <body name="m1_seg3L_r3" pos="-0.013168359 0.00050422829 0.0065591513" quat="0.99999251 0.0038027522 -0.00067533341 0.00025354355">
+          <inertial mass="0.00055767735" pos="-0.0043363422 0.0016619407 -0.0026744016" fullinertia="2.1622569e-08 3.7648708e-08 1.9078737e-08 -4.5788969e-09 1.2973541e-08 -1.7806821e-09" />
+          <joint name="m1_j_seg2_seg3L_r3" type="hinge" pos="-0.001022 -0.000563533 -0.00655227" axis="-0.67953742 0.14994959 -0.7181532" limited="true" range="0 2.3" />
+          <geom mesh="m1_seg3L_m" />
+          <geom class="collision_capsule" fromto="-0.008 0.002 0.0005 0.002 -0.001 0.003" />
+          <geom class="collision_capsule" fromto="-0.008 0.002 0.0005 -0.01 0.0015 -0.01" />
+          <geom class="collision_capsule" fromto="0.002 -0.001 0.003 -0.01 0.0015 -0.01"/>
+          <body name="m1_seg4_r3" pos="-0.00059492546 -0.00058942994 0.013442421" quat="0.99999899 -0.00054500053 0.0012844105 -0.00027598441">
+            <inertial mass="0.00062738702" pos="-0.0043554318 0.0014518003 0.0014709209" fullinertia="2.0605036e-08 4.0446923e-08 2.3403251e-08 -4.0701306e-09 -1.1192859e-08 -1.2719158e-09" />
+            <joint name="m1_j_seg3L_seg4_r3" type="hinge" pos="0.00161419 0.00116527 -0.00688657" axis="-0.93308026 0.32845604 -0.14655325" limited="true" range="-2.3 0" />
+            <geom mesh="m1_seg4_m" />
+            <geom class="collision_capsule" fromto="-0.01 0.0003 0.008 0.006 -0.002 -0.002" />
+            <geom class="collision_capsule" fromto="-0.01 0.0003 0.008 -0.008 0.002 -0.003" />
+            <geom class="collision_capsule" fromto="0.006 -0.002 -0.002 -0.008 0.002 -0.003"/>
+            <body name="m1_seg5L_r3" pos="0.013744735 -0.0011502708 0.0069505267" quat="-0.0002036888 -0.0014960664 -0.00093592162 0.99999842">
+              <inertial mass="0.00079689305" pos="0.0096278146 -0.0010697606 0.0037441622" fullinertia="2.3263971e-08 6.0098582e-08 3.8773285e-08 -2.2617749e-09 1.4539982e-08 -3.5542187e-09" />
+              <joint name="m1_j_seg4_seg5L_r3" type="hinge" pos="0.0153778 9.55141e-06 -2.86542e-05" axis="0.78792329 -0.098891322 0.60778072" limited="true" range="0 2.3" />
+              <geom mesh="m1_seg5L_m"/>
+              <geom class="collision_capsule" fromto="0.0031039944 -0.00062079888 0.0062079888 0.0031039944 0.0017415978 -0.0062079888" />
+              <geom class="collision_capsule" fromto="0.018623966 -0.00062079888 0.0062079888 0.0031039944 -0.00062079888 0.0062079888" />
+              <geom class="collision_capsule" fromto="0.018623966 -0.00062079888 0.0062079888 0.0031039944 0.0017415978 -0.0062079888" />
+              <site name="m1_h5Ltop_b1_r3" pos="0.0095896044 -0.0017956608 0.011404386" />
+              <site name="m1_h5Ltop_b2_r3" pos="0.018901588 -0.0017956608 0.011404386" />
+            </body>
+          </body>
+      </body>
+      <body name="m1_seg3R_r3" pos="0.013140035 0.00052430693 0.0065661901" quat="0.00027003006 0.00069741091 -0.0038071735 0.99999247">
+          <inertial mass="0.00065893204" pos="-0.0043172527 -0.0016619407 -0.0026744016" fullinertia="2.5548464e-08 4.4183837e-08 2.2542767e-08 5.4102644e-09 1.5329084e-08 2.1039917e-09" />
+          <joint name="m1_j_seg2_seg3R_r3" type="hinge" pos="-0.00105066 0.000563533 -0.00656182" axis="-0.67798864 -0.1493788 -0.71973424" limited="true" range="-2.3 0" />
+          <geom mesh="m1_seg3R_m" />
+          <geom class="collision_capsule" fromto="-0.008 -0.002 0.0006 0.002 0.001 0.003" />
+          <geom class="collision_capsule" fromto="-0.008 -0.002 0.0006 -0.01 -0.0015 -0.01" />
+          <geom class="collision_capsule" fromto="0.002 0.001 0.003 -0.01 -0.0015 -0.01"/>
+          <body name="m1_seg6_r3" pos="-0.00056851454 0.00059503547 0.013463621" quat="0.00031812514 -0.0012861144 0.00058412914 -0.99999895">
+            <inertial mass="0.00062738702" pos="0.004393642 0.0014518003 0.0014900104" fullinertia="2.0605036e-08 4.0446923e-08 2.3403251e-08 4.0701306e-09 1.1192859e-08 -1.2719158e-09" />
+            <joint name="m1_j_seg3R_seg6_r3" type="hinge" pos="-0.00161419 0.00116527 -0.00687702" axis="0.93297932 0.3284205 -0.14727377" limited="true" range="0 2.3" />
+            <geom mesh="m1_seg6_m" />
+            <geom class="collision_capsule" fromto="0.01 0.0005 0.008 -0.006 -0.002 -0.002" />
+            <geom class="collision_capsule" fromto="0.01 0.0005 0.008 0.008 0.0025 -0.003" />
+            <geom class="collision_capsule" fromto="-0.006 -0.002 -0.002 0.008 0.0025 -0.003"/>
+            <body name="m1_seg5R_r3" pos="-0.013754452 -0.0011653664 0.0069063123" quat="0.00028090015 0.0015329312 -0.00099646348 0.99999829">
+              <inertial mass="0.00079637023" pos="-0.0095514253 -0.0010697606 0.0037441622" fullinertia="2.324883e-08 6.0059483e-08 3.8425162e-08 2.260303e-09 -1.4207618e-08 -3.5519038e-09" />
+              <joint name="m1_j_seg5R_seg6_r3"  type="hinge" pos="-0.01538 -0.00000955 0.00002866" axis="-0.786101 -0.099797 0.609989" limited="true" range="-2.3 0"/>
+              <geom mesh="m1_seg5R_m"/>
+              <geom class="collision_capsule" fromto="-0.0031039944 -0.00062079888 0.0062079888 -0.0031039944 0.0017415978 -0.0062079888"/>
+              <geom class="collision_capsule" fromto="-0.018623966 -0.00062079888 0.0062079888 -0.0031039944 -0.00062079888 0.0062079888"/>
+              <geom class="collision_capsule" fromto="-0.018623966 -0.00062079888 0.0062079888 -0.0031039944 0.0017415978 -0.0062079888"/>
+              <site name="m1_h5Rtop_b1_r3" pos="-0.0095132151 -0.0017956608 0.011404386" />
+              <site name="m1_h5Rtop_b2_r3" pos="-0.018825198 -0.0017956608 0.011404386" />
+            </body>
+          </body>
+      </body>
+    <body name="m1_top" pos="0 0.032 0.043"  quat="9.99993534e-01 3.59611676e-03 1.24688697e-05 -2.45245067e-06" childclass="m1">
+            <inertial mass="0.017357707" pos="-5.7299736e-05 0 -0.0015664308" fullinertia="1.5358384e-05 1.5419944e-05 3.0745512e-05 0 1.526299e-09 0" />
+            <geom class="vis_mesh" mesh="m1_top" />
+            <geom name="disk1_top" class="collision_disk" pos="0 0 -0.0018623966" size="0.04966391 0.002" />
+            <joint name="m1_top_tx" type="slide" axis="1 0 0" />
+            <joint name="m1_top_ty" type="slide" axis="0 1 0" />
+            <joint name="m1_top_tz" type="slide" axis="0 0 1" />
+            <joint name="m1_top_rx" type="hinge" axis="1 0 0" />
+            <joint name="m1_top_ry" type="hinge" axis="0 1 0" />
+            <joint name="m1_top_rz" type="hinge" axis="0 0 1" />
+            <site name="m1_h5Ltop_a1" pos="0.031978126 -0.0095514253 -0.0042408323" />
+            <site name="m1_h5Ltop_a2" pos="0.031978126 -0.018863408 -0.0042408323" />
+            <site name="m1_h5Rtop_a1" pos="0.031978126 0.0095514253 -0.0042408323" />
+            <site name="m1_h5Rtop_a2" pos="0.031978126 0.018863408 -0.0042408323" />
+            <site name="m1_h5Ltop_a1_r1" pos="0.0095514253 0.031978126 -0.0042408323" />
+            <site name="m1_h5Ltop_a2_r1" pos="0.018863408 0.031978126 -0.0042408323" />
+            <site name="m1_h5Rtop_a1_r1" pos="-0.0095514253 0.031978126 -0.0042408323" />
+            <site name="m1_h5Rtop_a2_r1" pos="-0.018863408 0.031978126 -0.0042408323" />
+            <site name="m1_h5Ltop_a1_r2" pos="-0.031978126 0.0095514253 -0.0042408323" />
+            <site name="m1_h5Ltop_a2_r2" pos="-0.031978126 0.018863408 -0.0042408323" />
+            <site name="m1_h5Rtop_a1_r2" pos="-0.031978126 -0.0095514253 -0.0042408323" />
+            <site name="m1_h5Rtop_a2_r2" pos="-0.031978126 -0.018863408 -0.0042408323" />
+            <site name="m1_h5Ltop_a1_r3" pos="-0.0095514253 -0.031978126 -0.0042408323" />
+            <site name="m1_h5Ltop_a2_r3" pos="-0.018863408 -0.031978126 -0.0042408323" />
+            <site name="m1_h5Rtop_a1_r3" pos="0.0095514253 -0.031978126 -0.0042408323" />
+            <site name="m1_h5Rtop_a2_r3" pos="0.018863408 -0.031978126 -0.0042408323" />
+    </body>
+    </body>
+    </body>
+  </worldbody>
+  <tendon>
+    <fixed name="m1_fold_mode">
+      <joint joint="m1_j_bottom_seg2" coef=" 1" />
+      <joint joint="m1_j_seg2_seg3L" coef=" 1" />
+      <joint joint="m1_j_seg4_seg5L" coef=" 1" />
+      <joint joint="m1_j_seg2_seg3R" coef=" 1" />
+      <joint joint="m1_j_seg3R_seg6" coef="-1" />
+      <joint joint="m1_j_seg3L_seg4" coef="-1" />
+      <joint joint="m1_j_seg5R_seg6" coef="1" />
+      <joint joint="m1_j_bottom_seg2_r1" coef=" 1" />
+      <joint joint="m1_j_seg2_seg3L_r1" coef=" 1" />
+      <joint joint="m1_j_seg4_seg5L_r1" coef=" 1" />
+      <joint joint="m1_j_seg2_seg3R_r1" coef=" 1" />
+      <joint joint="m1_j_seg3R_seg6_r1" coef="-1" />
+      <joint joint="m1_j_seg3L_seg4_r1" coef="-1" />
+      <joint joint="m1_j_seg5R_seg6_r1" coef="1" />
+      <joint joint="m1_j_bottom_seg2_r2" coef=" 1" />
+      <joint joint="m1_j_seg2_seg3L_r2" coef=" 1" />
+      <joint joint="m1_j_seg4_seg5L_r2" coef=" 1" />
+      <joint joint="m1_j_seg2_seg3R_r2" coef=" 1" />
+      <joint joint="m1_j_seg3R_seg6_r2" coef="-1" />
+      <joint joint="m1_j_seg3L_seg4_r2" coef="-1" />
+      <joint joint="m1_j_seg5R_seg6_r2" coef="1" />
+      <joint joint="m1_j_bottom_seg2_r3" coef=" 1" />
+      <joint joint="m1_j_seg2_seg3L_r3" coef=" 1" />
+      <joint joint="m1_j_seg4_seg5L_r3" coef=" 1" />
+      <joint joint="m1_j_seg2_seg3R_r3" coef=" 1" />
+      <joint joint="m1_j_seg3R_seg6_r3" coef="-1" />
+      <joint joint="m1_j_seg3L_seg4_r3" coef="-1" />
+      <joint joint="m1_j_seg5R_seg6_r3" coef="1" />
+      </fixed>
+  </tendon>
+  <equality>
+    <weld body1="m1_seg5L" body2="m1_seg5R" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m1_h5Ltop_a1" site2="m1_h5Ltop_b1" solref="0.001 1" solimp="0.99 0.999 0.001"  />
+    <connect site1="m1_h5Ltop_a2" site2="m1_h5Ltop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m1_h5Rtop_a1" site2="m1_h5Rtop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m1_h5Rtop_a2" site2="m1_h5Rtop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m1_seg5L_r1" body2="m1_seg5R_r1" solref="0.01 1" solimp="0.95 0.99 0.002"/>
+    <connect site1="m1_h5Ltop_a1_r1" site2="m1_h5Ltop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m1_h5Ltop_a2_r1" site2="m1_h5Ltop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m1_h5Rtop_a1_r1" site2="m1_h5Rtop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m1_h5Rtop_a2_r1" site2="m1_h5Rtop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m1_seg5L_r2" body2="m1_seg5R_r2" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m1_h5Ltop_a1_r2" site2="m1_h5Ltop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m1_h5Ltop_a2_r2" site2="m1_h5Ltop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001"  />
+    <connect site1="m1_h5Rtop_a1_r2" site2="m1_h5Rtop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m1_h5Rtop_a2_r2" site2="m1_h5Rtop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001"  />
+    <weld body1="m1_seg5L_r3" body2="m1_seg5R_r3" solref="0.01 1" solimp="0.95 0.99 0.002"/>
+    <connect site1="m1_h5Ltop_a1_r3" site2="m1_h5Ltop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m1_h5Ltop_a2_r3" site2="m1_h5Ltop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m1_h5Rtop_a1_r3" site2="m1_h5Rtop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m1_h5Rtop_a2_r3" site2="m1_h5Rtop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+  </equality>
+</mujoco>
