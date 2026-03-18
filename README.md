@@ -30,6 +30,18 @@ The goal of this project is to build a simulation pipeline for a soft robotic ar
 
 ## Simulation Result
 
-![Soft robotic arm](images/scene.png)
+<p>
+  The image shows the initial posture of the soft robotic arm in the simulation.  
+</p>
 
-![Soft robotic arm grasping object](images/grasp_result.png)
+<p align="center">
+  <img src="images/scene.png" alt="Initial posture" width="70%">
+</p>
+
+<p>
+  The image shows the robotic arm grasping the target object.
+</p>
+
+<p align="center">
+  <img src="images/grasp_result.pngg" alt="Grasping result" width="70%">
+</p>
