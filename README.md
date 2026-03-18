@@ -22,7 +22,7 @@ The goal of this project is to build a simulation pipeline for a soft robotic ar
 .
 ├── xml/                    # XML templates and generated MuJoCo models
 ├── py/                     # intermediate scripts for model generation/assembly
-├── STL/                     # STL mesh files for the robot and grasped objects
+├── STL/                     # STL mesh files for the robot and grasped objects (not included in this repository)
 ├── merge.py                # model generation and XML assembly pipeline
 ├── compute.py            # simulation, control, and contact-force visualization
 └── README.md
