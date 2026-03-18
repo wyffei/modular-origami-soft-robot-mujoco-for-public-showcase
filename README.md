@@ -27,3 +27,9 @@ The goal of this project is to build a simulation pipeline for a soft robotic ar
 ├── compute.py            # simulation, control, and contact-force visualization
 └── README.md
 ```
+
+## Simulation Result
+
+![Soft robotic arm](images/scene.png)
+
+![Soft robotic arm grasping object](images/grasp_result.png)
